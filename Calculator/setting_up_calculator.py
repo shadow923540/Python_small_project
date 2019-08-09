@@ -8,14 +8,14 @@ class RefiEval():
         window = Tk()
         window.title("Refinance Evaluator")
 
-        Label(window, text="Loan Amount:").grid(row=1, column =1, sticky= W) #Sticky to West
-        Label(window, text="Interest Rate:").grid(row=2, column =1, sticky= W) #Sticky to West
-        Label(window, text="Term (years):").grid(row=3, column =1, sticky= W) #Sticky to West
+        Label(window, text="Loan Amount:", font='Helvetica 16').grid(row=1, column =1, sticky= W) #Sticky to West
+        Label(window, text="Interest Rate:", font='Helvetica 16').grid(row=2, column =1, sticky= W) #Sticky to West
+        Label(window, text="Term (years):", font='Helvetica 16').grid(row=3, column =1, sticky= W) #Sticky to West
         Label(window, text=None).grid(row=4, column =1, sticky= W) #Sticky to West
 
         #outputs
-        Label(window, text="Payment:").grid(row=5, column=1, sticky=W)
-        Label(window, text="Total Payements:").grid(row=6, column=1, sticky=W)
+        Label(window, text="Payment:", font='Helvetica 16').grid(row=5, column=1, sticky=W)
+        Label(window, text="Total Payements:", font='Helvetica 16').grid(row=6, column=1, sticky=W)
 
         #variables to store inputs
         self.pv = StringVar()
@@ -38,11 +38,26 @@ class RefiEval():
               font = "Helvetica 12 bold",
               justify=RIGHT).grid(row=5, column=2, sticky = E)
 
-        Label(window, textvariable=self.pmt,
+        Label(window, textvariable=self.total,
               font = "Helvetica 12 bold",
               justify=RIGHT).grid(row=6, column=2, sticky = E)
 
+        Button(window, text="Calculate Payment",
+               command = self.calcPayment,
+               font="Helvetica 14").grid(row=7, column=2, padx= (100,5), pady=5)
+
         window.mainloop()
+
+    def calcPayment(self):
+        pv = float(self.pv.get())
+        rate = float(self.interest_rate.get())
+        term = int(self.term.get())
+
+        pmt = np.pmt(rate / 1200, term * 12 , -pv, 0)
+        total = pmt * 12 * term
+
+        self.pmt.set("PLN" + format(pmt, "5,.2f"))
+        self.total.set("PLN" + format(total, "8,.2f"))
 
 
 
