@@ -44,7 +44,7 @@ class RefiEval():
 
         Button(window, text="Calculate Payment",
                command = self.calcPayment,
-               font="Helvetica 14").grid(row=7, column=2, padx= (100,5), pady=5)
+               font="Helvetica 14", bg="green").grid(row=7, column=2, padx= (100,5), pady=5)
 
         #refinance variables
         self.old_pmt = StringVar()
@@ -79,7 +79,7 @@ class RefiEval():
               font="helvetica 16").grid(row=13, column=1)
 
         Button(window, text="Eval Refi",
-               font="Helvetica 14", command=self.evalRefi).grid(row=14, column=2)
+               font="Helvetica 14", command=self.evalRefi).grid(row=14, column=2, padx= (100,5), pady=5)
 
         window.mainloop()
 
