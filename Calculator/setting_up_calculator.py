@@ -95,7 +95,26 @@ class RefiEval():
         self.total.set("PLN" + format(total, "8,.2f"))
 
     def evalRefi(self):
-        pass
+        pmt = self.pmt.get()
+        pmt = pmt[3:]
+        pmt = float(pmt[:pmt.find(',')] + pmt[pmt.find(',')+1:])
+
+        total = self.total.get()
+        total = total[3:]
+        total = float(total[:total.find(',')] + total[total.find(',') + 1:])
+
+        #perform comparison
+        old_pmt = float(self.old_pmt.get())
+        monthly_savings = old_pmt - pmt
+
+        refi_cost = float(self.refi_cost.get())
+        payback = refi_cost / monthly_savings
+        old_remaining = float(self.timeleft.get()) * 12 * old_pmt
+        overall_savings = old_remaining - total
+
+        self.monthly_saving.set("PLN" + format(monthly_savings, "5.2f"))
+        self.payback.set(format(payback, "5.2f"))
+        self.overall_savings.set("PLN" + format(overall_savings, "8.2f"))
 
 
 
