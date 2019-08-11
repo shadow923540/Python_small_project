@@ -46,6 +46,41 @@ class RefiEval():
                command = self.calcPayment,
                font="Helvetica 14").grid(row=7, column=2, padx= (100,5), pady=5)
 
+        #refinance variables
+        self.old_pmt = StringVar()
+        self.timeleft = StringVar()
+        self.refi_cost = StringVar()
+
+        Label(window, text = "Current Payment",
+              font="helvetica 16").grid(row=8, column=1)
+        Label(window, text = "Time left",
+              font="helvetica 16").grid(row=9, column=1)
+        Label(window, text = "Refi Cost",
+              font="helvetica 16").grid(row=10, column=1)
+
+        # evaluation entries
+        Entry(window, textvariable=self.old_pmt,
+              justify=RIGHT).grid(row=8, column=2, padx= (0,5))
+        Entry(window, textvariable=self.timeleft,
+              justify=RIGHT).grid(row=9, column=2, padx= (0,5))
+        Entry(window, textvariable=self.refi_cost,
+              justify=RIGHT).grid(row=10, column=2, padx= (0,5))
+
+        #outputs variable for evaluation
+        self.monthly_saving = StringVar()
+        self.payback = StringVar()
+        self.overall_savings = StringVar()
+
+        Label(window, text = "Monthly Saving",
+              font="helvetica 16").grid(row=11, column=1)
+        Label(window, text = "Payback",
+              font="helvetica 16").grid(row=12, column=1)
+        Label(window, text = "Overall Savings",
+              font="helvetica 16").grid(row=13, column=1)
+
+        Button(window, text="Eval Refi",
+               font="Helvetica 14", command=self.evalRefi).grid(row=14, column=2)
+
         window.mainloop()
 
     def calcPayment(self):
@@ -58,6 +93,9 @@ class RefiEval():
 
         self.pmt.set("PLN" + format(pmt, "5,.2f"))
         self.total.set("PLN" + format(total, "8,.2f"))
+
+    def evalRefi(self):
+        pass
 
 
 
