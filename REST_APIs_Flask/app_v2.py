@@ -29,7 +29,10 @@ def create_store():
 @app.route('/store/<string:name>') #'http://127.0.0.1:5000/store/some_name'
 #Special Flask sytax (the same "name") should be in get_store
 def get_store(name):
-    pass
+    for store in stores:
+        if store['name'] == name:
+            return jsonify(store)
+    return jsonify({'message': 'store not found'})
 
 #GET /store
 @app.route('/store')
