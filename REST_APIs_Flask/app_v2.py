@@ -3,7 +3,17 @@ from flask import Flask
 
 app = Flask(__name__)
 
-#What request do we want?
+stores = [
+    {
+        'name': 'My Wonderful Store',
+        'items': [
+            {
+            'name': 'My Item',
+            'price': 15.99
+            }
+        ]
+    }
+]
 
 
 #POST /store data: {name:}
