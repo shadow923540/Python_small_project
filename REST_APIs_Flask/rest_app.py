@@ -17,7 +17,7 @@ class Item(Resource):
 
     def post(self, name):
         if next(filter(lambda x: x['name'] == name,items), None) is not None:
-            return {'message': 'An item exist'}
+            return {'message': 'An item exist'}, 400
         data = request.get_json()
         item = {'name': name, 'price': data['price']}
         items.append(item)
