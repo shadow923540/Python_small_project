@@ -9,12 +9,15 @@ items= []
 
 class Item(Resource):
     def get(self, name):
-        for item in items:
-            if item['name'] == name:
-                return item #We don't have to use jsonify because flask_restful can handle dic
-        return {'item': None}, 404
+        # for item in items:
+        #     if item['name'] == name:
+        #         return item #We don't have to use jsonify because flask_restful can handle dic
+        item = next(filter(lambda x: x['name'] == name,items), None) # Next give us first item in filter function
+        return {'item': item}, 200 if item else 404
 
     def post(self, name):
+        if next(filter(lambda x: x['name'] == name,items), None) is not None:
+            return {'message': 'An item exist'}
         data = request.get_json()
         item = {'name': name, 'price': data['price']}
         items.append(item)
