@@ -27,4 +27,4 @@ api.add_resource(Item, '/item/<string:name>')
 
 
 
-app.run(port=5000)
+app.run(port=5000, debug=True)
