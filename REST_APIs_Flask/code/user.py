@@ -53,7 +53,7 @@ class UserRegister(Resource):
                         help="this field cannot be left blank!")
     parser.add_argument('password',
                         type=str,
-                        reqiored=True,
+                        required=True,
                         help="This field cannot be left blank!"
                         )
     def post(self):
@@ -66,4 +66,4 @@ class UserRegister(Resource):
         connection.commit()
         connection.close()
 
-        return("message": "User created successfully."), 201
+        return {"message": "User created successfully."}, 201
