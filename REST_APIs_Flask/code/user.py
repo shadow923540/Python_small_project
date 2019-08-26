@@ -13,7 +13,7 @@ class User:
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
-        query = "SELECT * FROM users WHERE usename=?"
+        query = "SELECT * FROM users WHERE username=?"
         result = cursor.execute(query, (username,)) #Parametry musza byc w formie tuple,
         #a zeby uzyc 1 argumentowego tuple trzeba z przecinkiem
         row = result.fetchone()
@@ -32,8 +32,7 @@ class User:
         cursor = connection.cursor()
 
         query = "SELECT * FROM users WHERE id=?"
-        result = cursor.execute(query, (id,)) #Parametry musza byc w formie tuple,
-        #a zeby uzyc 1 argumentowego tuple trzeba z przecinkiem
+        result = cursor.execute(query, (id,)) #Parametry musza byc w formie tuple
         row = result.fetchone()
         if row:
             # user = cls(row[0], row[1], row[2])
