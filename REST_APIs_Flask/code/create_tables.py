@@ -11,7 +11,6 @@ cursor.execute(create_teable)
 create_teable = "CREATE TABLE IF NOT EXISTS items (name text, price real)"
 cursor.execute(create_teable)
 
-cursor.execute("INSERT INTO items VALUES ('test', 10.23)")
 
 connection.commit()
 connection.close()
