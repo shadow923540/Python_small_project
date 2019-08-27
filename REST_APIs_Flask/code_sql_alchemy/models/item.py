@@ -8,23 +8,21 @@ class ItemModel:
     def json(self):
         return {'name': self.name, 'price': self.price}
 
-    @classmethod
-    def insert(cls, item):
+    def insert(self):
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
         query = "INSERT INTO items VALUES (?,?)"
-        cursor.execute(query, (item['name'], item['price']))
+        cursor.execute(query, (self.name, self.price))
         connection.commit()
         connection.close()
 
-    @classmethod
-    def update(cls, item):
+    def update(self):
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
         query = "UPDATE items SET price=? WHERE name=?"
-        cursor.execute(query, (item['price'], item['name']))
+        cursor.execute(query, (self.name, self.price)
         connection.commit()
         connection.close()
 
@@ -38,4 +36,4 @@ class ItemModel:
         row = result.fetchone()
         connection.close()
         if row:
-            return {'item': {'name': row[0], 'price': row[1]}}
+            return cls(*row)
