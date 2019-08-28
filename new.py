@@ -1,22 +1,20 @@
 x = {'1': [2000, 10000000], '2': [2350, 10000000], '3': [2000, 10000000], '4': [3100, 150000400], '5': [3100, 15000000], '7': [3100, 15000000]}
 
-def getList(dict):
-    list_value = []
-    x = list(dict.keys())
-    for value in x:
-        list_value.append(int(value))
-    return list_value
+def create_cell_key_value(x):
+    cell_values = list(x.values())
+    cell_numbers = list(x.keys())
+    return cell_values, cell_numbers
 
-def create_mapping():
+cell_values, cell_numbers = create_cell_key_value(x)
+
+def create_mapping(cell_numbers):
     mapping = {}
-    cell_numbers = getList(x)
     for c, index in enumerate(cell_numbers, 1):
         dic = {c: index}
         mapping.update(dic)
     return mapping
 
-def find_indentical_cells():
-    cell_values = list(x.values())
+def find_indentical_cells(cell_values):
     length = len(cell_values)
     identicalCells = []
     for i in range(length):
@@ -28,8 +26,8 @@ def find_indentical_cells():
     return identicalCells
 
 def create_identical_cells_list():
-    mapping = create_mapping()
-    identicalCells = find_indentical_cells()
+    mapping = create_mapping(cell_numbers)
+    identicalCells = find_indentical_cells(cell_values)
     for item in identicalCells:
         item[0]= mapping[item[0]]
         item[1]= mapping[item[1]]
