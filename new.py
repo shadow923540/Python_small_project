@@ -60,23 +60,23 @@ def create_mapping():
     return mapping
 
 mapping = create_mapping()
-print(mapping)
-print(mapping['6'])
 
 
 
+x = len(cell_values)
+
+identicalCells = []
+for i in range(x):
+    y = i+1
+    while y < x:
+        if cell_values[i] == cell_values[y]:
+            identicalCells.append([i+1, y+1])
+        y= y+1
+
+for item in identicalCells:
+    item[0]= mapping[item[0]]
+    item[1] = mapping[item[1]]
 
 
-#
-#
-#
-# x = len(cell_values)
-#
-# identicalCells = []
-# for i in range(x):
-#     y = i+1
-#     while y < x:
-#         if cell_values[i] == cell_values[y]:
-#             identicalCells.append([i+1, y+1])
-#         y= y+1
-# print(identicalCells)
+print(identicalCells)
+
