@@ -2,7 +2,7 @@ from werkzeug.security import safe_str_cmp
 from models.user import UserModel
 
 users = [
-    User(1, 'bob', 'asdf')
+    UserModel(1, 'bob', 'asdf')
 ]
 
 username_mapping = {u.username: u for u in users} #Set compre
