@@ -9,7 +9,14 @@ def recur_fibo(n):
        return(recur_fibo(n-1) + recur_fibo(n-2))
 
 @app.route('/fib/<int:fib>')
-def get_store(fib):
+def get_fib_num(fib):
+    if fib <= 1:
+        return jsonify({'Fib': fib})
+    else:
+        return jsonify({'Fib': (recur_fibo(fib - 1) + recur_fibo(fib - 2))})
+
+@app.route('/fib/<int:fib>')
+def get_fib_num(fib):
     if fib <= 1:
         return jsonify({'Fib': fib})
     else:
